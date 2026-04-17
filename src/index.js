@@ -21,25 +21,31 @@ function fatherTwoFoldOlder(sonAge, fatherAge) {
  * @returns {number} повертає те саме значення years
  */
 function printMessage(years) {
+    if (isNaN(years)) {
+        console.log("Некоректні дані");
+        return years;
+    }
     const year = Math.abs(years);
-    const tmpYear = year % 10;
-
-    if (tmpYear === 1 && year % 100 !== 11) {
-        if (years >= 0) console.log(`Батько був удвічі старший за сина ${year} рік тому`);
-        else console.log(`Батько буде удвічі старший за сина через ${year} рік`);
+    const str = year.toString();
+    let word;
+    switch (true) {
+        case str.endsWith("1") && !str.endsWith("11"):
+            word = "рік";
+            break;
+        case (str.endsWith("2") || str.endsWith("3") || str.endsWith("4")) && !(str.endsWith("12") || str.endsWith("13") || str.endsWith("14")):
+            word = "роки";
+            break;
+        default:
+            word = "років";
     }
-    else if (tmpYear >= 2 && tmpYear <= 4 && !(year % 100 >= 12 && year % 100 <= 14)) {
-        if (years >= 0) console.log(`Батько був удвічі старший за сина ${year} роки тому`);
-        else console.log(`Батько буде удвічі старший за сина через ${year} роки`);
-    }
-    else {
-        if (years >= 0) console.log(`Батько був удвічі старший за сина ${year} років тому`);
-        else console.log(`Батько буде удвічі старший за сина через ${year} років`);
+    if (years >= 0) {
+        console.log(`Батько був удвічі старший за сина ${year} ${word} тому`);
+    } else {
+        console.log(`Батько буде удвічі старший за сина через ${year} ${word}`);
     }
 
     return years;
 }
 
-
-const result = fatherTwoFoldOlder(21, 56);
-printMessage(result);
+const result1 = fatherTwoFoldOlder(21, 56);
+printMessage(result1);
