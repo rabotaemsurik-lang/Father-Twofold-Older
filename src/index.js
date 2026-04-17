@@ -8,7 +8,6 @@
  */
 function fatherTwoFoldOlder(sonAge, fatherAge) {
     if (sonAge < 0 || fatherAge < 0 || fatherAge - sonAge < 15) {
-        console.log("Некоректні дані");
         return NaN;
     }
 
